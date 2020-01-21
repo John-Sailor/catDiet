@@ -2,36 +2,25 @@ import time
 import pigpio
 
 
-amountFood
-weight
-prevWeight= []
 def main():
-	start time
-	dispense food
-	get weight
-	adjust amount
-	sleep
-	dispense food
-def getWeight():
-	global weight
-	//placeholder
-def dispenseFood():
+	currentAmount = quantityLogger()
+	dispenseFood(currentAmount)
+def dispenseFood(amount):
 	pi.set_pulse_width(17,1000)
-	time.sleep(amount*.001)
+	foodConstant =
+	time.sleep(amount * foodConstant *.001)
 	pi.set_pulse_width(17,0)
-def adjustAmount():
-	day = getDay
-	global amountFood
-	global prevWeight[day] = weight
-	# if target weight
-	if prevWeight[day] <  targetWeight*1.02 && prevWeight[day] > targetWeight*.98:
-		
-	# if overweight
-	if prevWeight[day] > prevWeight[day-7]*.98:
-		amountFood = amountFood -5;
-	#if on track
-	else if  prevWeight[day] > prevWeight[day-7]*.95 && prevWeight[day] < prevWeight[day-7]*.99:
-		amountFood = amountFood -1
-	#underweight
-	else:
-		amount = amount +5
+def quantityLogger():
+	foodArray = read_floats("/root/catDiet/food.log")
+	nextFoodAmount = calcNextFoodAmount(foodArray[-1])
+	foodLog = file.open("/root/catDiet/food.log", "w+")
+	foodLog.write(str(nextFoodAmount) + '\n')
+	foodLog.close
+	return nextFoodAmount
+def calcNextFoodAmount(currentAmount):
+	if currentAmount >= 0.33333333333333333
+		return currentAmount - 0.000182648401826484‬
+	return currentAmount
+def read_floats(filename):
+    with open(filename) as f:
+        return map(float, f)
