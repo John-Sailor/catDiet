@@ -4,7 +4,7 @@ import pigpio
 pi = pigpio.pi()
 pi.wait_for_edge(13)
 start = time.time()
-pi.set_servo_pulsewidth(18,1200)
+pi.set_servo_pulsewidth(18,2000)
 pi.wait_for_edge(13,pigpio.FALLING_EDGE)
 diff = time.time() - start
 pi.set_servo_pulsewidth(18,0)
