@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import time
 import pigpio
+from datetime import datetime
 
 pi = pigpio.pi()
 def main():
@@ -8,7 +9,7 @@ def main():
                 try:
                                 with open('/root/catDiet/cal.cfg', 'r') as calFile:
                                                 calVal = float(calFile.read())
-                                dispenseFood(float(0.2), calVal)
+                                dispenseFood(float(0.25), calVal)
                 except FileNotFoundError:
                                 print("cal file not found")
                                 calibrateFood()
@@ -26,5 +27,10 @@ def calibrateFood():
 	pi.set_servo_pulsewidth(18,0)
 	with open("/root/catDiet/cal.cfg",'w') as file:
 		file.write(str(diff))
+def logTime():
+	now = datetime.now()
+	current_time = now.strftime("%H:%M:%S")
+	with open("/root/catDiet/history.log",'a+') as file:
+		file.write(current_time)
 if __name__ == '__main__':
 	main()
