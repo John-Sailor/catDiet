@@ -16,6 +16,7 @@ def main():
 def dispenseFood(amount, calVal):
 		logTime()
 		pi.set_servo_pulsewidth(18,1200)
+		pi.wait_for_edge(18)
 		time.sleep(amount * calVal)
 		pi.set_servo_pulsewidth(18,0)
 def calibrateFood():
@@ -23,6 +24,7 @@ def calibrateFood():
 	pi.wait_for_edge(13)
 	start = time.time()
 	pi.set_servo_pulsewidth(18,1200)
+	pi.wait_for_edge(18)
 	pi.wait_for_edge(13,pigpio.FALLING_EDGE)
 	diff = time.time() - start
 	pi.set_servo_pulsewidth(18,0)
@@ -32,6 +34,6 @@ def logTime():
 	now = datetime.now()
 	current_time = now.strftime("%H:%M:%S")
 	with open("/root/catDiet/history.log",'a+') as file:
-		file.write(current_time)
+		file.write(current_time + '\n')
 if __name__ == '__main__':
 	main()
