@@ -14,6 +14,7 @@ def main():
                                 print("cal file not found")
                                 calibrateFood()
 def dispenseFood(amount, calVal):
+		logTime()
 		pi.set_servo_pulsewidth(18,1200)
 		time.sleep(amount * calVal)
 		pi.set_servo_pulsewidth(18,0)
